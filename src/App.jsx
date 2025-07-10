@@ -1,23 +1,29 @@
-import ProductList from './components/ProductList';
-import CartTotal from './components/CartTotal';
+import ProductList from './pages/ProductList';
+import CartTotal from './pages/CartTotal';
+import Navbar from './components/Navbar';
 import { CartContextProvider } from './store/CartContextProvider.jsx';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
+import About from './pages/About';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   return (
     <CartContextProvider>
       <Router>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/cart">Cart</Link></li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route path="/" element={<ProductList />} />
-          <Route path="/cart" element={<CartTotal />} />
-        </Routes>
+
+        <Navbar />
+        <AnimatePresence>
+          <Routes>
+
+            <Route path="/" element={<ProductList />} />
+            <Route path="/cart" element={<CartTotal />} />
+            <Route path="/about" element={<About />} />
+
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+
       </Router>
     </CartContextProvider>
   )
